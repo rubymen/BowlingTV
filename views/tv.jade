@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-lg-12.text-center
+        h1
+          = 'Piste numéro ' + tv
+  #container-score
+    table.table.table-bordered.table-stripped
+      thead
+        tr
+          th Joueurs
+          th 1
+          th 2
+          th 3
+          th 4
+          th 5
+          th 6
+          th 7
+          th 8
+          th 9
+          th 10
+          th Total
+      tbody#scoretable
+
+block javascript
+  script(rel='javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+  script(rel='javascript', src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
+  script(rel='javascript', src='/javascripts/javascript.js')
+  script(rel='javascript', src='/socket.io/socket.io.js')
+  script(rel='javascript', src='/javascripts/realtime.js')
+  script(type="text/javascript").
+    socket.on('who_are_you', function(data){
+      socket.emit('who_am_i', { id: #{tv} });
+    })
